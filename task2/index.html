@@ -50,44 +50,27 @@
 				<div id="divResult1"> </div>
 		</body>
 		<script>
-			function calculate(){
-				    var col_otr = -1;
-					var N = 4;
-					var M = 3;
-					var matrix_old = [
-					    [1, -2, 3, 4],
-					    [-5, -6, -7, 8],
-					    [9, -10, 11, -12]
-					];
-					var matrix = [
-					    [1, -2, 3, 4],
-					    [-5, -6, -7, 8],
-					    [9, -10, 11, -12]
-					];
-					var colN = matrix.length - 1
-					
-				    for (var col = 0; col < N; col++) {
-				        var col_neg = true;
-				        for (var row = 0; row < M; row++) {
-				            if (matrix[row][col] >= 0) {
-				                col_neg = false;
-				                break;
-				            }
-				        }
-				        if (col_neg) {
-				            col_otr = col;
-				            break;
-				        }
-				    }
-				    if (col_otr != -1) {
-				        for (var row = 0; row < M; row++) {
-				            var buff = matrix[row][col_otr];
-				            matrix[row][col_otr] = matrix[row][colN];
-				            matrix[row][colN] = buff;
-				        }
-				    }
-					document.getElementById("divResult").innerHTML =  "Matrix old: " + matrix_old.join('  |  ');
-					document.getElementById("divResult1").innerHTML =  "Matrix: " + matrix.join('  |  ');
-			  }
+				function countWordsWithThreeAs(inputString) {
+					let words = inputString.split(' '); // Разбиваем строку на массив слов
+					let count = 0;
+
+					words.forEach(word => {
+						let aCount = 0;
+						for (let i = 0; i < word.length; i++) {
+							if (word[i] === 'А') { // Проверяем наличие заглавной буквы "А"
+								aCount++;
+							}
+						}
+						if (aCount === 3) { // Если в слове три буквы "А", увеличиваем счетчик
+							count++;
+						}
+					});
+
+					return count;
+				}
+
+				let inputString = "АААБББ АААААА АААCCC ААА ДААА";
+				let result = countWordsWithThreeAs(inputString);
+				console.log(result); // Выводим результат в консоль
 		</script>
 	</html>
