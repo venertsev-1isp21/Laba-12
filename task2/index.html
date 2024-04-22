@@ -10,6 +10,15 @@
 				color: #120418;
 				background-color: #849FB7;
 			}
+			#inputA{
+				color: #120418;
+				width: 150px;
+				margin-top: 10px;
+				margin-left: 10px;
+				border-radius: 5px;
+				border: 1px solid black;
+				background-color: #768CA4;
+			}
 			#btnCalc{
 				color: #120418;
 				width: 76px;
@@ -22,16 +31,7 @@
 			#divResult{
 				color: #120418;
 				background-color: #768CA4;
-				width: 400px;
-				margin-top: 10px;
-				margin-left: 10px;
-				border: 1px solid black;
-				border-radius: 5px;
-			}
-			#divResult1{
-				color: #120418;
-				background-color: #768CA4;
-				width: 400px;
+				width: 120px;
 				margin-top: 10px;
 				margin-left: 10px;
 				border: 1px solid black;
@@ -41,36 +41,36 @@
 		</style>
 		
 		<body class='body'>
+		
+				<input placeholder="STR" id="inputA" />
 				
-				<button id="btnCalc" onclick="calculate()">
+				<button id="btnCalc" onclick="countWordsWithThreeAs(inputA.value)">
 				  Выполнить
 				</button>
 				
 				<div id="divResult"> </div>
-				<div id="divResult1"> </div>
 		</body>
 		<script>
 				function countWordsWithThreeAs(inputString) {
-					let words = inputString.split(' '); // Разбиваем строку на массив слов
-					let count = 0;
+					var words_array = inputString.split(' '); 
+					var count = 0;
 
-					words.forEach(word => {
-						let aCount = 0;
-						for (let i = 0; i < word.length; i++) {
-							if (word[i] === 'А') { // Проверяем наличие заглавной буквы "А"
-								aCount++;
+					for (var i = 0; i < words_array.length; i++) {
+						var current_word = words_array[i];
+						var a_count = 0;
+
+						for (var j = 0; j < current_word.length; j++) {
+							if (current_word[j] === 'А') {
+								a_count++;
 							}
 						}
-						if (aCount === 3) { // Если в слове три буквы "А", увеличиваем счетчик
+
+						if (a_count === 3) {
 							count++;
 						}
-					});
+					}
 
-					return count;
+					document.getElementById("divResult").innerHTML = "Количество TRIPPLE A: " + count;
 				}
-
-				let inputString = "АААБББ АААААА АААCCC ААА ДААА";
-				let result = countWordsWithThreeAs(inputString);
-				console.log(result); // Выводим результат в консоль
 		</script>
 	</html>
